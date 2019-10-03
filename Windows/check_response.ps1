@@ -1,4 +1,13 @@
-$url = 'https://saturnme.com'
+Param(
+   [Parameter(Position=1)]
+   [string]$w,
+  
+   [Parameter(Position=2)]
+   [string]$url 
+)
+
+
+
 
 # track execution time:
 $timeTaken = Measure-Command -Expression {
@@ -11,6 +20,6 @@ $milliseconds = [Math]::Round($milliseconds, 1)
 
 #"This took $milliseconds ms to execute"
 
-if ($milliseconds -lt "3000") { "OK $milliseconds ms to execute |  reponse=$milliseconds" ; exit 0 }
-if ($milliseconds -gt "4000") { "Critical $milliseconds ms to execute |  reponse=$milliseconds" ; exit 2 }
-if ($milliseconds -eq "UNKNOWN") { "unknown" ; exit 3 }
+if ($milliseconds -lt "$w") { "OK $milliseconds ms to execute |  reponse=$milliseconds" ; exit 0 }
+if ($milliseconds -gt "$w") { "Critical $milliseconds ms to execute |  reponse=$milliseconds" ; exit 2 }
+
