@@ -1,3 +1,6 @@
+# usage ./check_response.ps1 -w 1000 -url https://google.com
+
+
 Param(
    [Parameter(Position=1)]
    [string]$w,
