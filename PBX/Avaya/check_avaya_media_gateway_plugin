@@ -1,0 +1,58 @@
+Check media gateway is registerd or not.
+=======================================
+
+1. create a script file to grab the output
+vi /home/nagios/connect.sh
+#!/usr/bin/expect -f
+spawn /usr/bin/ssh nagios@10.1.10.12
+send -- "vt100\r "
+send -- "autosat\r"
+send -- "SUNT\r"
+send -- "list media-gateway\r\n"
+expect -re "\r\n(.*?)\r\n>$"
+
+
+2. change the permission 
+chmod /home/nagios/connect.s
+
+3. create a nagios plugin to check the status
+vi /usr/local/nagios/libexec/check_avaya_media_gateway.sh
+
+#!/bin/bash
+Name=$1
+/home/nagios/connect.sh > /tmp/avaya.txt
+VAR=`grep -A 10000 MEDIA-GATEWAY /tmp/avaya.txt  | sed 's/[;,()'\'']/ /g;s/  */ /g' | sed '1,6d' | sed '$ d' | grep "$NAME" | awk '{print $NF}'`
+echo $VAR | grep n >> /dev/null
+if [ $? == 0 ]; then
+  echo "$1 media gateway is not registered"
+else
+  echo "$1 media gateway is regitered"
+fi
+
+4. chmod 777 /usr/local/nagios/libexec/check_avaya_media_gateway.sh
+
+
+5. /usr/local/nagios/libexec/check_avaya_media_gateway.sh (name of the media gateway)
+
+eg: /usr/local/nagios/libexec/check_avaya_media_gateway.sh Ajman
+
+
+
+Example output of the media gateway status.
++++++++++++++++++++++++++++++++++++++++++++++
+MEDIA-GATEWAY REPORT
+
+Num Name                 Serial No/     IPV4 Address/     Type    NetRgn   Reg?
+                        FW Ver/HW Vint/ IPV6 Address/
+                        RecRule         Cntrl IP Addr
+
+1   G0 Ajman           08R23321321321   192.168.32.201    g450      3       n
+                        41 .9  .0  /1
+                        1
+
+2   G4 DXB             11N5322323232   10.45.40.4      g450      4       n
+                        41 .9  .0  /2
+                        1
+
+3   GW-TRADING      13TG3223233232   10.1.24.10      g450      5       n
+                        41 .9  .0  /2
