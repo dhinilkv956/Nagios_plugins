@@ -1,3 +1,10 @@
+Reference Link: 
+https://assets.nagios.com/downloads/nagiosxi/docs/Monitoring-VMware-With-Nagios-XI.pdf
+
+Downlaod vmware plugin link:
+https://code.vmware.com/web/sdk/6.7/vsphere-perl
+
+
 Installation of Vmware monitor plugin for nagios xi
 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -8,6 +15,8 @@ cpanm --notest Module::Build Crypt::SSLeay
 
 Download and Install VMware Perl SDK
 +++++++++++++++++++++++++++++++++++
+download the package from
+https://code.vmware.com/web/sdk/6.7/vsphere-perl
 
 chown root.root VMware-vSphere-Perl-SDK-6.7.0-8156551.x86_64.tar.gz 
 tar xzf VMware-vSphere*SDK*.tar.gz
