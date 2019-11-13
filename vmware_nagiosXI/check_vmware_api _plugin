@@ -1,1 +1,50 @@
-Hello
+Installation of Vmware monitor plugin for nagios xi
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+yum install libxml2-devel xml2 libuuid-devel perl-XML-LibXML perl-Env
+export PERL_MM_USE_DEFAULT=1
+cpan -i App::cpanminus
+cpanm --notest Module::Build Crypt::SSLeay
+
+Download and Install VMware Perl SDK
++++++++++++++++++++++++++++++++++++
+
+chown root.root VMware-vSphere-Perl-SDK-6.7.0-8156551.x86_64.tar.gz 
+tar xzf VMware-vSphere*SDK*.tar.gz
+ls -l VMware-vSphere*
+cd vmware-vsphere-cli-distrib/
+ls -l
+/vmware-install.pl EULA_AGREED=yes
+
+
+Troubleshooting
++++++++++++++++
+
+When we receive below error, need to fix with solution given below
+
+Error
++++++
+
+CHECK_VMWARE_API.PL CRITICAL - SOAP request error - possibly a protocol issue: <?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<soapenv:Body>
+<LoginResponse xmlns="urn:vim25"><returnval><key>52188605-d46c-d35b-6f28-aeb9bfef8dd9</key><userName>VSPHERE.LOCAL\Administrator</userName><fullName>Administrator vsphere.local</fullName><loginTime>2019-03-12T12:24:53.210441Z</loginTime><lastActiveTime>2019-03-12T12:24:53.210441Z</lastActiveTime><locale>en</locale><messageLocale>en</messageLocale><extensionSession>false</extensionSession><ipAddress>172.18.104.71</ipAddress><userAgent>VI Perl</userAgent><callCo
+
+You have mail in /var/spool/mail/root
+
+Solution
++++++++++
+
+Download the below perl package and install it
+
+wget https://www.cpan.org/modules/by-module/LWP/GAAS/libwww-perl-5.837.tar.gz
+
+tar -xvf libwww-perl-5.837.tar.gz
+cd libwww-perl-5.837
+perl Makefile.PL
+make
+make test
+make install
