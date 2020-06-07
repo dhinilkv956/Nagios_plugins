@@ -3,7 +3,7 @@
 #This scripts gets the list of hosts that are down currently, converts it into csv and sends it out as mail
 
 #Get data from Nagios using API and save it to output.xml
-curl -XGET "http://10.22.20.161/nagiosxi/api/v1/objects/hoststatus?current_state=1&apikey=UPl6K42d7kI0bZeB0brLQe9DfAJK62Lg76FRpW4QB2QL0lCiP43FhsePidvHegel&outputtype=xml" > output.xml
+curl -XGET "http://10.10.10.10/nagiosxi/api/v1/objects/hoststatus?current_state=1&apikey=dsdadsadas3dsadsadsada&outputtype=xml" > output.xml
 
 
 > duration.txt
