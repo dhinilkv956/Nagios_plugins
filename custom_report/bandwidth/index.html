@@ -1,0 +1,29 @@
+<?php
+shell_exec("/var/www/html/bandwidth_report/bandwidth.sh");
+header('Location: http://10.22.20.161/bandwidth_report/file/');
+?>
+
+[root@nagiosphy2 bandwidth_report]# cat index.html
+<html>
+        <body>
+
+<form id="setupform" action="bandwidth.php">
+          <div id="loading2" style="display:none;" align="middle"><img src="giphy.gif" alt="" /></div>
+            <input id="submit" value="Generate bandwidth report" style="font-size:200%;text-align:center;background-color:white;margin:auto;display:block" type="submit"/>
+</form>
+
+<script type="text/javascript">
+(function (d) {
+          d.getElementById('setupform').onsubmit = function () {
+                      d.getElementById('submit').style.display = 'none';
+                          d.getElementById('loading2').style.display = 'block';
+                            };
+}(document));
+</script>
+
+                <FORM>
+                        <button type="button" style="font-size:200%;background-color:white;margin-left:auto;margin-right:auto;display:block;margin-top:9%;margin-bottom:0%" onclick="parent.location='view.php'"> View previous bandwidth report </button>
+                </FORM>
+                </FORM>
+        </body>
+</html>
