@@ -7,6 +7,9 @@ https://code.vmware.com/web/sdk/6.7/vsphere-perl
 
 Installation of Vmware monitor plugin for nagios xi
 +++++++++++++++++++++++++++++++++++++++++++++++++++
+yum install perl-IO-Socket-INET6.noarch perl-Text-Template.noarch perl-Socket6.x86_64 perl-LWP-Protocol-https.noarch perl-XML-LibXML.x86_64 perl-ExtUtils-Command.noarch perl-Time-Piece.x86_64 perl-Archive-Zip.noarch perl-Class-ISA.noarch perl-Try-Tiny.noarch perl-version.x86_64 perl-HTML-Parser.x86_64 perl-XML-SAX.noarch  perl-XML-NamespaceSupport.noarch
+
+
 
 yum install libxml2-devel xml2 libuuid-devel perl-XML-LibXML perl-Env
 export PERL_MM_USE_DEFAULT=1
